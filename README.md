@@ -1,4 +1,4 @@
-JOS_Python_SDK
+JOS Python SDK
 ==============
 
 unofficial Jingdong open service Python SDK
