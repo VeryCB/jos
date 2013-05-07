@@ -1,17 +1,28 @@
-import hashlib
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
-def sign(secret, params):
-    '''
-        params目前只支持字典类型
-    '''
+from config import APP_KEY, APP_SECRET, BASE_URL
+from utils import sign, gen_timestamp
 
-    keys = parameters.keys()
-    keys.sort()
+import requests
+import json
 
-    p_string = "%s%s%s" % (secret, \
-            ''.join('%s%s' % (key, params[key]) for key in keys), \
-            secret)
+class JOS(object):
 
-    sign = hashlib.md5(p_string).hexdigest().upper()
+    def __init__(self):
+        self.key = APP_KEY
+        self.secret = APP_SECRET
 
-    return sign
+    def get(self, method, app_params=None):
+        params = {
+                    'method': method,
+                    'app_key': self.key,
+                    'timestamp': gen_timestamp(),
+                    'v': '2.0',
+                    '360buy_param_json': json.dumps(app_params),
+                 }
+
+        params['sign'] = sign(self.secret, params)
+        res = requests.get(BASE_URL, params=params)
+        return res.content
+
