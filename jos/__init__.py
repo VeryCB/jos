@@ -24,5 +24,5 @@ class JOS(object):
 
         params['sign'] = sign(self.secret, params)
         res = requests.get(BASE_URL, params=params)
-        return res.content
+        return json.loads(res.content)
 
