@@ -1,5 +1,5 @@
 *.py[cod]
-jos/config.py
+*config.py
 # C extensions
 *.so
 
