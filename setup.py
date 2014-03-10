@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 from jos import __version__
 
@@ -16,6 +16,8 @@ setup(
     description='Jingdong API Client',
     long_description=long_description,
     license='MIT',
+    keywords = ('jingdong', 'jos'),
+    packages = find_packages(),
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Environment :: Web Environment',
