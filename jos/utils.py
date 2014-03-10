@@ -16,7 +16,7 @@ def sign(secret, params):
     keys = params.keys()
     keys.sort()
 
-    p_string = ''.join('%s%s' % (key, params[key]) for key in keys),
+    p_string = ''.join('%s%s' % (key, params[key]) for key in keys)
     p_string = ''.join([secret, p_string, secret])
 
     sign = hashlib.md5(p_string).hexdigest().upper()
