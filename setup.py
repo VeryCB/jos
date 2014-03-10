@@ -16,8 +16,8 @@ setup(
     description='Jingdong API Client',
     long_description=long_description,
     license='MIT',
-    keywords = ('jingdong', 'jos'),
-    packages = find_packages(),
+    keywords=('jingdong', 'jos'),
+    packages=find_packages(),
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Environment :: Web Environment',
