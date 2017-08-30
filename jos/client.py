@@ -18,12 +18,13 @@ class JDClient(object):
         self.secret = secret
         self.token = token
 
-    def call(self, method, app_params=None):
+    def call(self, method, app_params=None, token=None):
         """Call specific method to fetch data returned by API.
 
         :param method: the method to be called.
         :param app_params: application parameters which are required
                            to call the specific method.
+        :param token: call a specific method may need setup a specific token
         """
         params = {
             'method': method,
@@ -32,7 +33,9 @@ class JDClient(object):
             'v': '2.0',
             '360buy_param_json': json.dumps(app_params),
         }
-        if self.token is not None:
+        if token is not None:
+            params['access_token'] = token
+        elif self.token is not None:
             params['access_token'] = self.token
         params['sign'] = sign(self.secret, params)
         res = requests.get(self.BASE_URL, params=params)
